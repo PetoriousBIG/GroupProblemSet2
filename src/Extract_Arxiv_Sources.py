@@ -3,7 +3,8 @@ import pandas as pd
 from datetime import datetime
 import os
 
-def fetch_arxiv_data(query, max_results=50):
+
+def fetch_arxiv_data(query, max_results=300):
     base_url = "http://export.arxiv.org/api/query?"
     search_query = f"search_query=all:{query.replace(' ', '+')}"
     params = f"&start=0&max_results={max_results}"
@@ -35,14 +36,15 @@ def fetch_arxiv_data(query, max_results=50):
 
     return papers
 
+
 # List of queries to search
 queries = [
     "machine learning",
     "deep learning",
     "neural networks",
-    "PCA", 
+    "PCA",
     "computer vision",
-    "reinforcement learning"
+    "reinforcement learning",
 ]
 
 # Fetch data for multiple queries
@@ -55,7 +57,7 @@ df = pd.DataFrame(all_papers)
 
 # Define the filename and save path
 csv_filename = "Arxiv_Resources.csv"
-save_path = os.path.join(os.getcwd(), csv_filename)  
+save_path = os.path.join(os.getcwd(), csv_filename)
 
 # Save the DataFrame as a CSV file only if it contains data
 if not df.empty:
