@@ -6,18 +6,18 @@
 
 ## Preprocessing Requirements
 ### The following tasks can be completed using previously completed work from the final project. __Due 4/7__
-- [] Upload dataset to repo
-- [] Represent abstracts as a vector (one or more of Bag of Words, TF-IDF, Word2Vec, CloVe, BERT, etc)
+- [x] Upload dataset to repo
+- [x] Represent abstracts as a vector (one or more of Bag of Words, TF-IDF, Word2Vec, CloVe, BERT, etc)
 
 ## Tasks
 ### Task 1 __Due 4/10__
-- [] Reduce dimensionality of abstract vectors using either Autoencoder or Restricted Boltzmann Machine
-- [] Visualize latent space using PCA, T-SNE, or UMAP
+- [x] Reduce dimensionality of abstract vectors using either Autoencoder or Restricted Boltzmann Machine
+- [x] Visualize latent space using PCA, T-SNE, or UMAP
 
 ### Task 2 __Due 4/10__
-- [] Apply Gaussian Mixture Model or Restricted Boltzmann Machine to vector representations
-    - [] Cluster abstract into k groups
-    - [] Same the abstracts from each cluster
+- [x] Apply Gaussian Mixture Model or Restricted Boltzmann Machine to vector representations
+    - [x] Cluster abstract into k groups
+    - [] Sample the abstracts from each cluster
     - [] Interpret clusters: what groups each cluster together
 
 ### Task 3 (If Using Autoencoder) __Due 4/13__
