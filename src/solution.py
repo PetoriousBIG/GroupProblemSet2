@@ -21,6 +21,25 @@ def preprocess_text(text):
     return text
 
 
+def keyword_reader(df, num_words=15):
+    df_T = df.transpose()
+    top_dict = {}
+    for i, c in enumerate(df_T.columns):
+        top = df_T.loc[:, c].sort_values(ascending=False)
+        top_dict[df_T.columns[i]] = list(zip(top.index, top.values))
+
+    i = 0
+    for data_index, top_words in top_dict.items():
+        print(f"Data number: {data_index}")
+        print(", ".join([word for word, count in top_words[0:num_words]]))
+        print("-------------------")
+        i += 1
+        if i == 5:
+            i = 0
+            break
+    return
+
+
 text_column = "Abstract"
 
 df = pd.read_csv("Arxiv_Resources.csv")
@@ -76,7 +95,20 @@ sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=labels_model, palette="viridis
 plt.show()
 
 # Sample
-sample_X, sample_y = model.sample(100) # change this as needed
+sample_X, sample_y = model.sample(100)  # change this as needed
 samples_text = tfidf_vectorizer.inverse_transform(sample_X)
 
-print(samples_text)
+# print(samples_text)
+
+
+# View frequent keywords in tfidf.
+feature_names = tfidf_vectorizer.get_feature_names_out()
+
+for k_print in range(0, k):
+    df_tfidf = pd.DataFrame(tfidf_matrix, columns=feature_names)
+    df_tfidf["cluster"] = labels_model
+
+    df_int = df_tfidf[df_tfidf["cluster"] == k_print]
+    df_result = df_int.drop("cluster", axis=1)
+    print(f"Result for the {k_print}-cluster===========================")
+    keyword_reader(df_result)
