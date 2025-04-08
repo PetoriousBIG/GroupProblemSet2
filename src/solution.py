@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neural_network import BernoulliRBM
 from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.mixture import GaussianMixture
 import seaborn as sns
@@ -73,3 +74,9 @@ labels_model = model.fit_predict(X_rbm)
 
 sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=labels_model, palette="viridis")
 plt.show()
+
+# Sample
+sample_X, sample_y = model.sample(100) # change this as needed
+samples_text = tfidf_vectorizer.inverse_transform(sample_X)
+
+print(samples_text)
